@@ -1,67 +1,28 @@
 # Snake-Game
-"""Snake, classic arcade game.
+Snake Eater
+A snake game written in Python using the Pygame library.
 
-Excercises
+Installing
+Download the Python 3 installer package from the official website and install it, if not installed previously.
 
-1. How do you make the snake faster or slower?
-2. How can you make the snake go around the edges?
-3. How would you move the food?
-4. Change the snake to respond to arrow keys.
+Run the following in the terminal to install the Pygame library
 
-"""
+pip3 install pygame
+Running the application
+Download the source code from the repository and run the file just as any other Python script (.py) file.
 
-from turtle import *
-from random import randrange
-from freegames import square, vector
+python3 Snake\ Game.py
+The difficulty variable can be changed with the values provided in the comment to set the difficulty level.
 
-food = vector(0, 0)
-snake = [vector(10, 0)]
-aim = vector(0, -10)
+The rest of the code is properly commented and self explanatory. Tweaks can be made to change the play style or visuals of the game.
 
-def change(x, y):
-    "Change snake direction."
-    aim.x = x
-    aim.y = y
+Screenshots
+1 Written using PyCharm
 
-def inside(head):
-    "Return True if head inside boundaries."
-    return -200 < head.x < 190 and -200 < head.y < 190
+2 Active game screen
 
-def move():
-    "Move snake forward one segment."
-    head = snake[-1].copy()
-    head.move(aim)
+3 Game over screen
 
-    if not inside(head) or head in snake:
-        square(head.x, head.y, 9, 'red')
-        update()
-        return
-
-    snake.append(head)
-
-    if head == food:
-        print('Snake:', len(snake))
-        food.x = randrange(-15, 15) * 10
-        food.y = randrange(-15, 15) * 10
-    else:
-        snake.pop(0)
-
-    clear()
-
-    for body in snake:
-        square(body.x, body.y, 9, 'black')
-
-    square(food.x, food.y, 9, 'green')
-    update()
-    ontimer(move, 100)
-
-setup(420, 420, 370, 0)
-hideturtle()
-tracer(False)
-listen()
-onkey(lambda: change(10, 0), 'Right')
-onkey(lambda: change(-10, 0), 'Left')
-onkey(lambda: change(0, 10), 'Up')
-onkey(lambda: change(0, -10), 'Down')
-move()
-done()
+Prerequisites
+Python
+Pygame, an open source Python library for making multimedia applications
